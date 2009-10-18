@@ -1,0 +1,36 @@
+# Sample Rails database configuration file. Modify this to fit your database
+# setup.
+
+defaults: &defaults
+  adapter:  postgresql
+  host:     127.0.0.1
+  username: db_user
+  password: db_password
+
+development:
+  <<: *defaults
+  database: db_name_dev
+
+test:
+  <<: *defaults
+  database: db_name_test
+
+production:
+  <<: *defaults
+  database: db_name
+
+
+# Old MySQL settings.
+defaults_mysql: &defaults_mysql
+  <<: *defaults
+  adapter: mysql
+
+development_mysql:
+  <<: *defaults_mysql
+
+test_mysql:
+  <<: *defaults_mysql
+
+production_mysql:
+  <<: *defaults_mysql
+

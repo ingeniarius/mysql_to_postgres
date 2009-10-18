@@ -1,0 +1,40 @@
+= MySQL to PostgreSQL migration script
+
+Rake task for migrating MySQL database to PostgreSQL. Migrates both the
+schema and data.
+
+Requires RAILS_ENV+'_mysql' and RAILS_ENV environments to be setup (eg.
+'development_mysql' and 'development').
+
+To ensure that the data migration is performed as fast as possible (critical
+for large, production datasets), we avoid using ActiveRecord for
+reading and writing data. A number of additional optimizations are also
+employed: disabling of indexes, triggers, use of prepared statements, paging,
+and transactions. On a dataset with 244,214 records (98 MB MySQL dumpfile),
+we acheived a 11x speed up over a simple ActiveRecord based implementation.
+
+Usage:
+
+    rake db:migrate:mysql_to_postgres
+
+This migrates the database from the RAILS_ENV+'_mysql' to RAILS_ENV (eg. from
+'development_mysql' to 'development').
+
+You can also turn off optimizations like the disabling of triggers and indexes
+by passing 'drop_triggers=false' and 'drop_indexes=false', eg.
+
+    rake db:migrate:mysql_to_postgres drop_triggers=false drop_indexes=false
+
+== Bugs and feedback
+
+Please {report bugs and feature
+requests}[http://github.com/jamestyj/mysql_to_postgres/issues]. Patches and
+suggestions are welcomed too.
+
+== Author
+
+- {James Tan}[http://github.com/jamestyj], Novell.
+
+== License
+
+Copyright (c) 2009 Novell. See MIT-LICENSE in this directory.
