@@ -18,10 +18,12 @@ Gem::Specification.new do |s|
   s.files = [
     ".gitignore",
      "MIT-LICENSE",
+     "README.rdoc",
      "Rakefile",
      "VERSION",
      "config/database.yml",
      "lib/tasks/mysql_to_postgres.rake",
+     "mysql_to_postgres.gemspec",
      "specs.watchr"
   ]
   s.homepage = %q{http://github.com/jamestyj/mysql_to_postgres}
